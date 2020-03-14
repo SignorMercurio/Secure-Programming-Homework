@@ -1,6 +1,6 @@
 /* g++ main.cpp -g -lgmpxx -lgmp 
  * Author: Mercury
- * Tested under Ubuntu 19.04
+ * Tested under Ubuntu 16.04 & 19.04
 */
 #include <gmpxx.h>
 
@@ -13,6 +13,8 @@ int main()
 {
   int cnt = 24;
   mpz_class n;
+
+  setvbuf(stdout, NULL, _IONBF, 0);
 
   printf("Please input number of times to repeat the test: ");
   scanf("%d", &cnt);
@@ -27,7 +29,8 @@ int main()
   } while (miller_rabin(n, cnt) == 0);
   puts("The generated prime number with 120 bits is: (in base 10)");
   mpz_out_str(stdout, 10, n.get_mpz_t());
-
+  puts("");
+  
   return 0;
 }
 
